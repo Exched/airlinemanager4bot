@@ -15,4 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker image build -t airlinemanager4bot:v1
+      run: |
+      echo "${{secret.DOCKERPW}}" |docker login -u "exched" --pasword-stdin 
+      docker image build -t exched/airlinemanager4bot
+      docker push  exched/airlinemanager4bot
